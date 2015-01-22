@@ -1,0 +1,8 @@
+{
+  "name": "webmaker-firehose",
+  "version": "0.0.1",
+  "dependencies": {
+    "makerstrap": "^0.2.7",
+    "webmaker-login-ux": "mozilla/webmaker-login-ux#^1.3.7"
+  }
+}
