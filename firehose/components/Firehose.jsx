@@ -1,43 +1,62 @@
 var React = require("react");
-var WebmakerLoginUX = require("./WebmakerLoginUX.jsx");
+var Header = require ("./Header.jsx");
 var FirehoseEditor = require("./FirehoseEditor.jsx");
 
 var Firehose = React.createClass({
   getInitialState: function() {
     return {
       loggedIn: false,
-      isAdmin: false
+      isAdmin: false,
+      viewState: "one-up"
     };
   },
-  handleLoggedIn: function(user) {
+  onLoggedIn: function(user) {
     this.setState({
       loggedIn: true,
       isAdmin: !!user.isAdmin
     });
-    this.render();
   },
-  handleLoggedOut: function() {
+  onLoggedOut: function() {
     this.setState({
       loggedIn: false,
       isAdmin: false
     });
-    this.render();
+  },
+  onToggled: function() {
+    var newState = this.state.viewState === "one-up" ? "grid" : "one-up";
+    console.log( "NEWSTATE: ", newState );
+    this.setState({
+      viewState: newState
+    });
   },
   render: function() {
+    console.log( "FH.jsx: ", this.state.viewState );
+    var header = <Header
+                  onLoggedIn={this.onLoggedIn}
+                  onLoggedOut={this.onLoggedOut}
+                  onToggled={this.onToggled}
+                  viewState={this.state.viewState} />;
+
     if ( this.state.loggedIn && this.state.isAdmin ) {
       return (
-        <FirehoseEditor/>
+        <div>
+          {header}
+          <FirehoseEditor viewState={this.state.viewState} />
+        </div>
       );
     } else if ( this.state.loggedIn && !this.state.isAdmin) {
       return (
-        <h1>no admin!</h1>
+        <div>
+          {header}
+          <h1>You Do not have permission to use the Firehose!</h1>
+        </div>
       );
     }
 
     return (
-      <WebmakerLoginUX
-        onLoggedIn={this.handleLoggedIn}
-        onLoggedOut={this.handleLoggedOut} ></WebmakerLoginUX>
+      <div>
+        {header}
+      </div>
     );
   }
 });

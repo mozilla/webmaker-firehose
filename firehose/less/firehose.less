@@ -1,3 +1,120 @@
-.component {
+@firehose-dark-blue: #0A2E38;
+@firehose-light-blue: #2E95C0;
+@firehose-gray: #DDEDF2;
+@firehose-white: #F9FAFA;
+
+@navbarMarginTop: -6px;
+
+* {
+  box-sizing: border-box;
+}
+
+.firehose-body {
+  margin: 0;
+  padding-top: 70px;
   background: white;
+}
+
+.navbar.one-up-enabled,
+.one-up-enabled {
+  color: @firehose-white;
+  background: @firehose-light-blue;
+}
+.navbar.grid-enabled,
+.grid-enabled {
+  color: @firehose-light-blue;
+  background: @firehose-white;
+}
+
+.one-up-enabled .navbar-brand {
+  background: @firehose-light-blue;
+  color: @firehose-white;
+  &:hover {
+    background: @firehose-light-blue !important;
+    color: @firehose-white !important;
+  }
+}
+.grid-enabled .navbar-brand {
+  background: @firehose-white;
+  color: @firehose-light-blue;
+  &:hover {
+    background-color: @firehose-white !important;
+    color: @firehose-light-blue !important;
+  }
+}
+
+.nav {
+  li {
+    span {
+      display: block;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.container {
+  .firehose-login {
+    float: right;
+    margin-top: @navbarMarginTop;
+  }
+}
+
+.firehose-toggle {
+  cursor: pointer;
+  &.one-up-enabled {
+    .firehose-toggle-icon,
+    .firehose-slider-container {
+      border-color: @firehose-white;
+      color: @firehose-dark-blue;
+    }
+    .firehose-slider {
+      background-color: @firehose-white;
+    }
+  }
+  &.grid-enabled {
+    background-color: @firehose-white;
+    .firehose-toggle-icon,
+    .firehose-slider-container {
+      border-color: @firehose-white;
+      color: @firehose-dark-blue;
+    }
+    .firehose-slider {
+      background-color: @firehose-white;
+    }
+  }
+  &.left {
+    .firehose-slider {
+      float: left;
+      margin-left: 2px;
+    }
+  }
+  &.right {
+    .firehose-slider {
+      float: right;
+      margin-right: 2px;
+    }
+  }
+  .firehose-toggle-icon {
+    padding: 10 5px;
+    font-weight: bold;
+  }
+  .firehose-toggle-icon,
+  .firehose-slider-container {
+    float: left;
+    margin-top: @navbarMarginTop;
+  }
+  .firehose-slider-container {
+    background-color: inherit;
+    width: 75px;
+    height: 30px;
+    border: 3px solid;
+    border-radius: 35px;
+  }
+  .firehose-slider {
+    height: 20px;
+    width: 20px;
+    margin-top: 2px;
+    border-radius: 15px;
+  }
 }

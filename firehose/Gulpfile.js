@@ -4,6 +4,23 @@ var watch = require('gulp-watch');
 // where are we running?
 var path = require("path");
 var cwd = path.dirname(__filename);
+var lessSRC = cwd + '/less/*.less';
+
+/**
+ * LESS compilation is independent of any other task
+ */
+gulp.task('less', function() {
+  var less = require('gulp-less');
+  var plumber = require('gulp-plumber');
+  var sourcemaps = require('gulp-sourcemaps');
+
+  return gulp.src(lessSRC)
+      .pipe(plumber())
+      .pipe(sourcemaps.init())
+      .pipe(less())
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(cwd + '/public/stylesheets'))
+});
 
 /**
  * Browserify bundling of firehose app.
@@ -69,13 +86,15 @@ gulp.task('lint-firehose', function() {
  * files to be written before we move on to the next task,
  * because in this case we can't run parallel tasks.
  */
-gulp.task('firehose', ['lint-firehose', 'minify-firehose']);
+gulp.task('firehose', ['lint-firehose', 'minify-firehose', 'less']);
 
+gulp.task('watch', function() {
+  watch(jsxSrc, function() { gulp.start('lint-firehose'); });
+  watch(jsxSrc, function() { gulp.start('minify-firehose'); });
+  watch(lessSRC, function() { gulp.start('less'); });
+});
 
 /**
  * Automatic rebuilding when .jsx files are changed
  */
-gulp.task('watch-firehose', function() {
-  watch(jsxSrc, function() { gulp.start('lint-firehose'); });
-  watch(jsxSrc, function() { gulp.start('minify-firehose'); });
-});
+gulp.task('watch-firehose',[ 'firehose', 'watch' ]);

@@ -1,5 +1,4 @@
 var WebmakerUxMixin = {
-
   componentDidMount: function() {
     var WebmakerLoginUx = require("webmaker-login-ux");
 
