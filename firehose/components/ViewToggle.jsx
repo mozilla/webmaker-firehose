@@ -6,9 +6,16 @@ var ViewToggle = React.createClass({
       viewState: this.props.viewState
     };
   },
+  onToggle: function() {
+    var newState = this.state.viewState === "one-up" ? "grid" : "one-up";
+    this.setState({
+      viewState: newState
+    });
+    this.props.onToggle();
+  },
   render: function() {
     var toggleClass = "firehose-toggle ";
-console.log( "VIEWTOGGLE: ", this.state.viewState );
+
     if ( this.state.viewState === "one-up" ) {
       toggleClass += "one-up-enabled right";
     } else {
@@ -18,7 +25,7 @@ console.log( "VIEWTOGGLE: ", this.state.viewState );
 
     return (
       <li>
-        <span onClick={this.props.onToggle} className={toggleClass}>
+        <span onClick={this.onToggle} className={toggleClass}>
           <i className="fa fa-th-large firehose-toggle-icon"></i>
           <div className="firehose-slider-container">
             <div className="firehose-slider">

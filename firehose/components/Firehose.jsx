@@ -22,19 +22,17 @@ var Firehose = React.createClass({
       isAdmin: false
     });
   },
-  onToggled: function() {
+  onToggle: function() {
     var newState = this.state.viewState === "one-up" ? "grid" : "one-up";
-    console.log( "NEWSTATE: ", newState );
     this.setState({
       viewState: newState
     });
   },
   render: function() {
-    console.log( "FH.jsx: ", this.state.viewState );
     var header = <Header
                   onLoggedIn={this.onLoggedIn}
                   onLoggedOut={this.onLoggedOut}
-                  onToggled={this.onToggled}
+                  onToggle={this.onToggle}
                   viewState={this.state.viewState} />;
 
     if ( this.state.loggedIn && this.state.isAdmin ) {

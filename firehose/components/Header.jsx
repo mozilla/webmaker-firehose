@@ -14,25 +14,26 @@ var Header = React.createClass({
       loggedIn: true
     });
     this.props.onLoggedIn(user);
-    this.render();
   },
   handleLoggedOut: function() {
     this.setState({
       loggedIn: false
     });
     this.props.onLoggedOut();
-    this.render();
   },
-  onToggled: function() {
-    this.props.onToggled();
+  onToggle: function() {
+    var newState = this.state.viewState === "one-up" ? "grid" : "one-up";
+    this.setState({
+      viewState: newState
+    });
+    this.props.onToggle();
   },
   render: function() {
     var toggle;
 
     if ( this.state.loggedIn ) {
-      console.log("HEADER.jsx",this.state.viewState );
       toggle =  <ViewToggle
-                  onToggle={this.onToggled}
+                  onToggle={this.onToggle}
                   viewState={this.state.viewState} />;
     } else {
       toggle = "";

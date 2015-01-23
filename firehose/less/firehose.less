@@ -26,6 +26,13 @@
   background: @firehose-white;
 }
 
+.one-up-enabled .firehose-slider {
+  background-color: @firehose-white;
+}
+.grid-enabled .firehose-slider {
+  background-color: @firehose-light-blue;
+}
+
 .one-up-enabled .navbar-brand {
   background: @firehose-light-blue;
   color: @firehose-white;
@@ -62,27 +69,6 @@
 
 .firehose-toggle {
   cursor: pointer;
-  &.one-up-enabled {
-    .firehose-toggle-icon,
-    .firehose-slider-container {
-      border-color: @firehose-white;
-      color: @firehose-dark-blue;
-    }
-    .firehose-slider {
-      background-color: @firehose-white;
-    }
-  }
-  &.grid-enabled {
-    background-color: @firehose-white;
-    .firehose-toggle-icon,
-    .firehose-slider-container {
-      border-color: @firehose-white;
-      color: @firehose-dark-blue;
-    }
-    .firehose-slider {
-      background-color: @firehose-white;
-    }
-  }
   &.left {
     .firehose-slider {
       float: left;
