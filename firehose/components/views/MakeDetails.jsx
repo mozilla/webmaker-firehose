@@ -9,13 +9,13 @@ var MakeDetails = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <div>AVATAR</div>
+      <div className="firehose-make-details">
+        <div className="details-avatar">AVATAR</div>
         <div>
           <span>TITLE</span>
           <span>AuthorLink</span>
         </div>
-        <div>
+        <div className="firehose-one-up-controls">
           <Trash />
           <FeatureMake />
           <Navigation onNavigate={this.onNavigate} delta="-1"/>

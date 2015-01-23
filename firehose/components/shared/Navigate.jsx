@@ -14,7 +14,7 @@ var Navigate = React.createClass({
     this.props.onNavigate(this.state.delta);
   },
   render: function() {
-    var navigationClass = "firehose-make-nav fa fa-4 ";
+    var navigationClass = "make-nav fa ";
 
     if ( this.state.delta > 0 ) {
       navigationClass += "fa-arrow-right";

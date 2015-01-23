@@ -10,7 +10,7 @@ var FeatureMake = React.createClass({
     this.props.onClick();
   },
   render: function() {
-    var featureClass = "make-feature-toggle fa fa-4 ";
+    var featureClass = "feature-toggle fa ";
 
     if ( this.state.featured ) {
       featureClass += "fa-star";

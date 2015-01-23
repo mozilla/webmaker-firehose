@@ -5,19 +5,22 @@ var ViewToggle = require("./ViewToggle.jsx");
 var Header = React.createClass({
   getInitialState: function() {
     return {
-      loggedIn: this.props.loggedIn,
+      loggedIn: false,
+      isAdmin: false,
       viewState: this.props.viewState
     };
   },
   handleLoggedIn: function(user) {
     this.setState({
-      loggedIn: true
+      loggedIn: true,
+      isAdmin: user.isAdmin
     });
     this.props.onLoggedIn(user);
   },
   handleLoggedOut: function() {
     this.setState({
-      loggedIn: false
+      loggedIn: false,
+      isAdmin: false
     });
     this.props.onLoggedOut();
   },
@@ -31,7 +34,7 @@ var Header = React.createClass({
   render: function() {
     var toggle;
 
-    if ( this.state.loggedIn ) {
+    if ( this.state.loggedIn && this.state.isAdmin ) {
       toggle =  <ViewToggle
                   onToggle={this.onToggle}
                   viewState={this.state.viewState} />;
@@ -39,16 +42,9 @@ var Header = React.createClass({
       toggle = "";
     }
 
-    var navbarClasses = "navbar navbar-inverse navbar-fixed-top ";
-
-    if (this.props.viewState === "one-up") {
-      navbarClasses += "one-up-enabled";
-    } else {
-      navbarClasses += "grid-enabled";
-    }
 
     return (
-      <div className={navbarClasses}>
+      <div className="navbar navbar-inverse navbar-fixed-top">
         <div className="container">
           <div className="navbar-header">
             <div className="navbar-brand">
