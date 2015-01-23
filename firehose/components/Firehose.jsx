@@ -1,6 +1,6 @@
 var React = require("react");
-var Header = require ("./Header.jsx");
-var FirehoseEditor = require("./FirehoseEditor.jsx");
+var Header = require ("./header/Header.jsx");
+var FirehoseEditor = require("./views/FirehoseEditor.jsx");
 
 var Firehose = React.createClass({
   getInitialState: function() {

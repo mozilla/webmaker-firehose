@@ -1,5 +1,5 @@
 var React = require("react");
-var webmakerLoginUxMixin = require("./../mixins/WebmakerUXMixin");
+var webmakerLoginUxMixin = require("./../../mixins/WebmakerUXMixin");
 
 var WebmakerLoginUX = React.createClass({
   mixins: [
