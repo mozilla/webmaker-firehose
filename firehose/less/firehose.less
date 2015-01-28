@@ -2,6 +2,7 @@
 @firehose-light-blue: #2E95C0;
 @firehose-gray: #DDEDF2;
 @firehose-white: #F9FAFA;
+@firehose-featured: #FFF500;
 
 @navbarMarginTop: -6px;
 
@@ -44,7 +45,7 @@
 }
 
 .container {
-  .firehose-login {
+  .webmaker-login-ux {
     float: right;
     margin-top: @navbarMarginTop;
   }
@@ -88,14 +89,31 @@
   }
 }
 
+.loading-makes,
+.no-makes {
+  font-size: 2em;
+}
+
 .firehose-make-details {
   width: 100%;
   height: 70px;
 
-  .details-avatar {
+  .firehose-make-avatar {
     float: left;
     height: 70px;
     width: 70px;
+    border-radius: 70px;
+    overflow: hidden;
+    display: inline;
+  }
+
+  .firehose-make-info {
+    font-weight: bold;
+    font-size: 1.1em;
+    display: inline-block;
+    height: 100%;
+    padding-top: 15px;
+    margin-left: 15px;
   }
 
   .details-controls {
@@ -107,4 +125,28 @@
   .make-nav {
     font-weight: bold;
   }
+
+  .firehose-one-up-controls {
+    float: right;
+
+    .firehose-trash-make,
+    .fa-arrow-right,
+    .fa-arrow-left,
+    .feature-toggle {
+      color: @firehose-light-blue;
+      font-size: 3em;
+      margin: 15px 70px 0 0;
+      cursor: pointer;
+    }
+
+    .feature-toggle.fa-star {
+      color: @firehose-featured;
+    }
+  }
+}
+
+.make-preview {
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }

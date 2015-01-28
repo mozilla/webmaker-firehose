@@ -7,6 +7,7 @@ var Firehose = React.createClass({
     return {
       loggedIn: false,
       isAdmin: false,
+      csrfToken: document.querySelector("meta[name='csrf-token']").getAttribute("content"),
       viewState: "one-up"
     };
   },
@@ -33,20 +34,23 @@ var Firehose = React.createClass({
                   onLoggedIn={this.onLoggedIn}
                   onLoggedOut={this.onLoggedOut}
                   onToggle={this.onToggle}
-                  viewState={this.state.viewState} />;
+                  viewState={this.state.viewState}
+                  csrfToken={this.state.csrfToken} />;
 
     if ( this.state.loggedIn && this.state.isAdmin ) {
       return (
         <div>
           {header}
-          <FirehoseEditor viewState={this.state.viewState} />
+          <FirehoseEditor
+            viewState={this.state.viewState}
+            csrfToken={this.state.csrfToken} />
         </div>
       );
     } else if ( this.state.loggedIn && !this.state.isAdmin) {
       return (
         <div>
           {header}
-          <h1>You Do not have permission to use the Firehose!</h1>
+          <h1>You do not have permission to use the Firehose!</h1>
         </div>
       );
     }

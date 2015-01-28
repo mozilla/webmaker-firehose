@@ -29,6 +29,7 @@ gulp.task('bundle-firehose', function() {
   var browserify = require('browserify');
   var transform = require('vinyl-transform');
   var reactify = require('reactify');
+  var to5ify = require("6to5ify");
   var source = require('vinyl-source-stream');
 
   // Don't process react. We'll link to its CDN minified version.
@@ -40,13 +41,13 @@ gulp.task('bundle-firehose', function() {
   });
 
   return browserify(cwd + '/components/firehose-app.jsx')
+    .transform(to5ify)
     .transform(reactify)
     .transform(donottouch)
     .bundle()
     .pipe(source('firehose-app.js'))
     .pipe(gulp.dest(cwd + '/build/'));
 });
-
 
 /**
  * Minify firehose app
@@ -62,7 +63,7 @@ gulp.task('minify-firehose', ['bundle-firehose'], function() {
 
 // used in both the lint and watch tasks
 var jsxSrc = cwd + '/components/**/*.js*';
-
+var mixinSrc = cwd + '/mixins/**/*.js*';
 
 /**
  * Javascript and JSX linting
@@ -74,7 +75,7 @@ gulp.task('lint-firehose', function() {
   var jsxhinter = require('jshint-jsx');
   jsxhinter.JSHINT = jsxhinter.JSXHINT;
 
-  return gulp.src(jsxSrc)
+  return gulp.src([jsxSrc, mixinSrc])
     .pipe(jshint({ linter: 'jshint-jsx' }))
     .pipe(jshint.reporter('default'));
 });
@@ -86,15 +87,12 @@ gulp.task('lint-firehose', function() {
  * files to be written before we move on to the next task,
  * because in this case we can't run parallel tasks.
  */
-gulp.task('firehose', ['lint-firehose', 'minify-firehose', 'less']);
+gulp.task('firehose-build', ['lint-firehose', 'less', 'minify-firehose']);
 
-gulp.task('watch', function() {
+gulp.task('watch-firehose', function() {
   watch(jsxSrc, function() { gulp.start('lint-firehose'); });
   watch(jsxSrc, function() { gulp.start('minify-firehose'); });
+  watch(mixinSrc, function() { gulp.start('lint-firehose'); });
+  watch(mixinSrc, function() { gulp.start('minify-firehose'); });
   watch(lessSRC, function() { gulp.start('less'); });
 });
-
-/**
- * Automatic rebuilding when .jsx files are changed
- */
-gulp.task('watch-firehose',[ 'firehose', 'watch' ]);

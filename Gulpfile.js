@@ -10,5 +10,10 @@ require('./firehose/Gulpfile');
  * files to be written before we move on to the next task,
  * because in this case we can't run parallel tasks.
  */
-gulp.task('default', ['lint-server', 'firehose']);
+
+gulp.task('build', ['firehose-build', 'lint-server']);
+
+gulp.task('watch', ['watch-firehose'])
+
+gulp.task('default', ['build', 'watch', "watch-server", 'run-server']);
 

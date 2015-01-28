@@ -6,27 +6,19 @@ var WebmakerLoginUX = React.createClass({
     webmakerLoginUxMixin
   ],
   render: function() {
-    if ( this.props.loggedIn ) {
-      return (
-        <span>
-          <button
-            className="btn btn-primary firehose-login"
-            onClick={this.logout}>Sign out
-          </button>
-        </span>
-      );
+    var handler = this.login,
+        label = this.props.signInLabel;
+    if (this.props.loggedIn) {
+      handler = this.logout;
+      label = this.props.signOutLabel;
     }
-
-    return (
-      <span>
-        <button
-          className="btn btn-primary firehose-login"
-          onClick={this.login}>Sign in
-        </button>
-      </span>
+    return(
+      <button
+        className="btn btn-primary webmaker-login-ux"
+        onClick={handler}>{label}
+      </button>
     );
-
-  },
+  }
 });
 
 module.exports = WebmakerLoginUX;

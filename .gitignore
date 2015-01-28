@@ -31,5 +31,6 @@ firehose/vendor
 # Users Environment Variables
 .lock-wscript
 
+.env
 apps/public/firehose/stylesheets
 apps/public/firehose/javascript/firehose-app.js

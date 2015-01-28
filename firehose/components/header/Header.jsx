@@ -54,10 +54,14 @@ var Header = React.createClass({
           <ul className="nav navbar-nav navbar-right">
             {toggle}
             <li>
-              <WebmakerLoginUX
-                loggedIn={this.state.loggedIn}
-                onLoggedIn={this.handleLoggedIn}
-                onLoggedOut={this.handleLoggedOut} />
+              <span>
+                <WebmakerLoginUX
+                  loggedIn={this.state.loggedIn}
+                  onLoggedIn={this.handleLoggedIn}
+                  onLoggedOut={this.handleLoggedOut}
+                  signInLabel="Sign In"
+                  signOutLabel="Sign Out"/>
+                </span>
             </li>
           </ul>
         </div>
