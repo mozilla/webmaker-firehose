@@ -44,8 +44,8 @@ var MakeDetails = React.createClass({
           <div className="firehose-one-up-controls">
             <Trash onTrashClicked={this.props.onTrashClicked} />
             <Feature onFeaturedClicked={this.onFeaturedClicked} featured={featured} />
-            <Navigation onNavigate={this.onNavigate} delta="-1"/>
-            <Navigation onNavigate={this.onNavigate} delta="1" />
+            <Navigation onNavigate={this.onNavigate} delta={-1}/>
+            <Navigation onNavigate={this.onNavigate} delta={1} />
           </div>
         </div>
         <MakePreview url={this.props.make.url} />

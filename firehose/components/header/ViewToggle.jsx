@@ -1,22 +1,14 @@
 var React = require("react");
 
 var ViewToggle = React.createClass({
-  getInitialState: function() {
-    return {
-      viewState: this.props.viewState
-    };
-  },
   onToggle: function() {
-    var newState = this.state.viewState === "one-up" ? "grid" : "one-up";
-    this.setState({
-      viewState: newState
-    });
-    this.props.onToggle();
+    var newState = this.props.viewState === "one-up" ? "grid" : "one-up";
+    this.props.onToggle(newState);
   },
   render: function() {
     var toggleClass = "firehose-toggle ";
 
-    if ( this.state.viewState === "one-up" ) {
+    if ( this.props.viewState === "one-up" ) {
       toggleClass += "one-up-enabled right";
     } else {
       toggleClass += "grid-enabled left";

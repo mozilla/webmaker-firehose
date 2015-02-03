@@ -6,8 +6,7 @@ var Header = React.createClass({
   getInitialState: function() {
     return {
       loggedIn: false,
-      isAdmin: false,
-      viewState: this.props.viewState
+      isAdmin: false
     };
   },
   handleLoggedIn: function(user) {
@@ -24,12 +23,8 @@ var Header = React.createClass({
     });
     this.props.onLoggedOut();
   },
-  onToggle: function() {
-    var newState = this.state.viewState === "one-up" ? "grid" : "one-up";
-    this.setState({
-      viewState: newState
-    });
-    this.props.onToggle();
+  onToggle: function(newState) {
+    this.props.onToggle(newState);
   },
   render: function() {
     var toggle;
@@ -37,11 +32,10 @@ var Header = React.createClass({
     if ( this.state.loggedIn && this.state.isAdmin ) {
       toggle =  <ViewToggle
                   onToggle={this.onToggle}
-                  viewState={this.state.viewState} />;
+                  viewState={this.props.viewState} />;
     } else {
       toggle = "";
     }
-
 
     return (
       <div className="navbar navbar-inverse navbar-fixed-top">

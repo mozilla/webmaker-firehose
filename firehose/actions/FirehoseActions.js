@@ -22,7 +22,7 @@ var FirehoseActions = Object.assign({}, EventEmitter.prototype, {
   addListener: function(actionType, callback) {
     this.on(actionType, callback);
   },
-  removeListener: function(actionType, callback) {
+  deleteListener: function(actionType, callback) {
     this.removeListener(actionType, callback);
   },
   emitEvent: function(actionType, data) {

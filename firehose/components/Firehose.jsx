@@ -8,15 +8,19 @@ var Firehose = React.createClass({
     return {
       loggedIn: false,
       isAdmin: false,
-      csrfToken: document.querySelector("meta[name='csrf-token']").getAttribute("content"),
       viewState: "one-up"
     };
   },
   componentDidMount: function() {
     window.addEventListener("keyup", this.onKeyUpTriggered);
+    window.addEventListener("keydown", this.onKeyDownTriggered);
+    this.setState({
+      csrfToken: document.querySelector("meta[name='csrf-token']").getAttribute("content")
+    });
   },
   componentWillUnmount: function() {
     window.removeEventListener("keyup", this.onKeyUpTriggered);
+    window.removeEventListener("keydown", this.onKeyDownTriggered);
   },
   onLoggedIn: function(user) {
     this.setState({
@@ -30,19 +34,23 @@ var Firehose = React.createClass({
       isAdmin: false
     });
   },
-  onToggle: function() {
-    var newState = this.state.viewState === "one-up" ? "grid" : "one-up";
+  onToggle: function(newState) {
     this.setState({
       viewState: newState
     });
   },
+  onKeyDownTriggered: function (event) {
+    if (event.keyCode === 32 && event.target === document.body) {
+      event.preventDefault();
+    }
+  },
   onKeyUpTriggered: function(evt) {
     let keyCode = evt.keyCode;
-    // 'f' pressed
-    if (keyCode === 70) {
+    // 'f' or spacebar pressed
+    if (keyCode === 70 || keyCode === 32 ) {
       FirehoseActions.toggleFeature();
-      // 'd' pressed
-    } else if ( keyCode === 68 ) {
+      // 'd' or Backspace pressed
+    } else if ( keyCode === 68 || keyCode === 8 ) {
       FirehoseActions.trash();
       // left or right pressed
     } else if ( keyCode === 39 || keyCode === 37 ) {

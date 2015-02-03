@@ -3,40 +3,31 @@ var FirehoseActions = require("../../actions/FirehoseActions");
 var FirehoseConstants = require("../../actions/FirehoseConstants");
 
 var Navigate = React.createClass({
-  getInitialState: function() {
-    var delta = +this.props.delta;
-    if (typeof delta !== "number" || delta === 0) {
-      delta = 1;
-    }
-    return {
-      delta: delta
-    };
-  },
   componentDidMount: function() {
     FirehoseActions.addListener(FirehoseConstants.NAVIGATE, this.handleKeyboardEvent);
   },
   componentWillUnmount: function() {
-    FirehoseActions.removeListener(FirehoseConstants.NAVIGATE, this.handleKeyboardEvent);
+    FirehoseActions.deleteListener(FirehoseConstants.NAVIGATE, this.handleKeyboardEvent);
   },
   handleKeyboardEvent: function(delta) {
-    if ( delta === this.state.delta ) {
-      this.props.onNavigate(this.state.delta);
+    if ( delta === this.props.delta ) {
+      this.props.onNavigate(this.props.delta);
     }
   },
   onNavigate: function() {
-    this.props.onNavigate(this.state.delta);
+    this.props.onNavigate(this.props.delta);
   },
   render: function() {
     var navigationClass = "make-nav fa ";
 
-    if ( this.state.delta > 0 ) {
+    if ( this.props.delta > 0 ) {
       navigationClass += "fa-arrow-right";
     } else {
       navigationClass += "fa-arrow-left";
     }
 
     return (
-      <i className={navigationClass} onClick={this.onNavigate}></i>
+      <i className={navigationClass} onClick={this.onNavigate} title="You can control the current make with the arrow keys"></i>
     );
   }
 });

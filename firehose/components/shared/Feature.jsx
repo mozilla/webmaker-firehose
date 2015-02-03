@@ -7,7 +7,7 @@ var FeatureMake = React.createClass({
     FirehoseActions.addListener(FirehoseConstants.TOGGLE_FEATURE, this.onFeaturedClicked);
   },
   componentWillUnmount: function() {
-    FirehoseActions.removeListener(FirehoseConstants.TOGGLE_FEATURE, this.onFeaturedClicked);
+    FirehoseActions.deleteListener(FirehoseConstants.TOGGLE_FEATURE, this.onFeaturedClicked);
   },
   onFeaturedClicked: function() {
     this.props.onFeaturedClicked();
@@ -22,7 +22,7 @@ var FeatureMake = React.createClass({
     }
 
     return (
-      <i className={featureClass} onClick={this.onFeaturedClicked}></i>
+      <i className={featureClass} onClick={this.onFeaturedClicked} title="Toggle with 'f' or Spacebar"></i>
     );
   }
 });
