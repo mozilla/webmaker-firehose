@@ -1,4 +1,6 @@
 var React = require("react");
+var FirehoseActions = require("../../actions/FirehoseActions");
+var FirehoseConstants = require("../../actions/FirehoseConstants");
 
 var Navigate = React.createClass({
   getInitialState: function() {
@@ -9,6 +11,17 @@ var Navigate = React.createClass({
     return {
       delta: delta
     };
+  },
+  componentDidMount: function() {
+    FirehoseActions.addListener(FirehoseConstants.NAVIGATE, this.handleKeyboardEvent);
+  },
+  componentWillUnmount: function() {
+    FirehoseActions.removeListener(FirehoseConstants.NAVIGATE, this.handleKeyboardEvent);
+  },
+  handleKeyboardEvent: function(delta) {
+    if ( delta === this.state.delta ) {
+      this.props.onNavigate(this.state.delta);
+    }
   },
   onNavigate: function() {
     this.props.onNavigate(this.state.delta);

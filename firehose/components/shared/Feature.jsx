@@ -1,6 +1,14 @@
 var React = require("react");
+var FirehoseActions = require("../../actions/FirehoseActions");
+var FirehoseConstants = require("../../actions/FirehoseConstants");
 
 var FeatureMake = React.createClass({
+  componentDidMount: function() {
+    FirehoseActions.addListener(FirehoseConstants.TOGGLE_FEATURE, this.onFeaturedClicked);
+  },
+  componentWillUnmount: function() {
+    FirehoseActions.removeListener(FirehoseConstants.TOGGLE_FEATURE, this.onFeaturedClicked);
+  },
   onFeaturedClicked: function() {
     this.props.onFeaturedClicked();
   },

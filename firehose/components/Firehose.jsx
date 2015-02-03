@@ -1,6 +1,7 @@
 var React = require("react");
 var Header = require ("./header/Header.jsx");
 var FirehoseEditor = require("./views/FirehoseEditor.jsx");
+var FirehoseActions = require("../actions/FirehoseActions");
 
 var Firehose = React.createClass({
   getInitialState: function() {
@@ -10,6 +11,12 @@ var Firehose = React.createClass({
       csrfToken: document.querySelector("meta[name='csrf-token']").getAttribute("content"),
       viewState: "one-up"
     };
+  },
+  componentDidMount: function() {
+    window.addEventListener("keyup", this.onKeyUpTriggered);
+  },
+  componentWillUnmount: function() {
+    window.removeEventListener("keyup", this.onKeyUpTriggered);
   },
   onLoggedIn: function(user) {
     this.setState({
@@ -28,6 +35,21 @@ var Firehose = React.createClass({
     this.setState({
       viewState: newState
     });
+  },
+  onKeyUpTriggered: function(evt) {
+    let keyCode = evt.keyCode;
+    // 'f' pressed
+    if (keyCode === 70) {
+      FirehoseActions.toggleFeature();
+      // 'd' pressed
+    } else if ( keyCode === 68 ) {
+      FirehoseActions.trash();
+      // left or right pressed
+    } else if ( keyCode === 39 || keyCode === 37 ) {
+      let delta = (keyCode === 39 ? 1 : -1);
+      FirehoseActions.navigate(delta);
+    }
+
   },
   render: function() {
     var header = <Header
