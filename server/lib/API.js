@@ -28,19 +28,10 @@ module.exports = function(env) {
     },
 
     feature: function(req, res) {
-      var tags = req.body.tags;
-      var index = tags.indexOf(featuredTag);
-      if ( index === -1 ) {
-        tags.push(featuredTag);
-      } else {
-        tags.splice(index, 1);
-      }
-      client.update(
+      var action = req.body.featured ? "untag" : "tag";
+      client[ action ](
         req.body.id,
-        {
-          tags: tags,
-          overwriteTags: true
-        },
+        featuredTag,
         function(err, data) {
           if ( err ) {
             return res.status(500).send(err);

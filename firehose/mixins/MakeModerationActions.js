@@ -53,14 +53,13 @@ let MakeModerationActions = {
     request.post(`${API_VERSION}/feature`)
       .send({
         id: make.id,
-        tags: make.tags
+        featured: make.tags.indexOf("webmaker:featured") !== -1
       })
       .set("X-CSRF-Token", this.props.csrfToken)
       .type("application/json")
       .on("error", (err) => console.error(err))
       .end((res) => {
-        let updated = res.body;
-        make.tags = updated.tags;
+        make.tags = res.body.tags;
         this.setState({
           makes: makes
         });
