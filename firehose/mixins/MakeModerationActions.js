@@ -1,6 +1,6 @@
 let request = require("superagent");
 
-const MAX_PAGE_LENGTH=3;
+const MAX_PAGE_LENGTH=100;
 const API_VERSION="/api/1.0";
 
 let MakeModerationActions = {

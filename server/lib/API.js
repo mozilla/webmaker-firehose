@@ -15,7 +15,7 @@ module.exports = function(env) {
       var page = req.query.p;
 
       client.find({
-        limit: 3,
+        limit: 100,
         page: page,
         sortByField: "createdAt"
       }).then(function(err, makes) {
