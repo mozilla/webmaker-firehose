@@ -68,7 +68,6 @@ let MakeModerationActions = {
     request.get(`${API_VERSION}/find?p=${page}&nocache=${Date.now()}`)
       .on("error", (err) => console.error(err))
       .end((res) => {
-        console.log( JSON.stringify( res.body.map((m) => {return m.url;}), null, 2 ) );
         this.setState({
           searchPage: page,
           index: index,
