@@ -8,7 +8,7 @@ let OneUpView = React.createClass({
   ],
   getInitialState: function() {
     return {
-      searchPage: this.props.initialSearchPage || 0,
+      searchPage: this.props.initialSearchPage || 1,
       index: this.props.initialMakeIdx || 0
     };
   },

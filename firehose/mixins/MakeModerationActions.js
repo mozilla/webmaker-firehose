@@ -1,28 +1,27 @@
 let request = require("superagent");
 
-const MAX_PAGE_LENGTH=100;
+const MAX_PAGE_LENGTH=3;
 const API_VERSION="/api/1.0";
 
 let MakeModerationActions = {
   componentDidMount: function() {
-    this.getMakeData(this.state.index, this.state.searchPage);
+    this.getMakeData(this.state.searchPage, this.state.index);
   },
   onNavigate: function(delta) {
-    let newIdx = this.state.index + delta,
-        newPage = this.state.searchPage;
+    let newIdx = this.state.index + delta;
 
     if (newIdx >= MAX_PAGE_LENGTH) {
-      this.getMakeData(0, this.state.searchPage + 1);
+      this.getMakeData(this.state.searchPage + 1, 0);
     } else if(newIdx < 0) {
-      if ( newPage !== 0 ) {
-        this.getMakeData(newIdx + MAX_PAGE_LENGTH, newPage - 1);
+      if ( this.state.searchPage > 1 ) {
+        this.getMakeData(this.state.searchPage - 1, MAX_PAGE_LENGTH - 1);
       }
     } else if ( !this.state.makes[newIdx] ) {
       return;
     } else {
       this.setState({
         index: newIdx
-      }, newPage);
+      });
     }
   },
   onTrashClicked: function() {
@@ -65,12 +64,14 @@ let MakeModerationActions = {
         });
       });
   },
-  getMakeData: function(page) {
-    request.get(`${API_VERSION}/find?p=${page}`)
+  getMakeData: function(page, index) {
+    request.get(`${API_VERSION}/find?p=${page}&nocache=${Date.now()}`)
       .on("error", (err) => console.error(err))
       .end((res) => {
+        console.log( JSON.stringify( res.body.map((m) => {return m.url;}), null, 2 ) );
         this.setState({
           searchPage: page,
+          index: index,
           makes: res.body
         });
       });
