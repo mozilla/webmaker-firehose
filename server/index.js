@@ -1,4 +1,5 @@
 var express = require("express"),
+    cookieSession = require("cookie-session"),
     path = require("path"),
     nunjucks = require("nunjucks"),
     bodyParser = require("body-parser"),
@@ -47,8 +48,14 @@ if (env.get("FORCE_SSL")) {
 
 app.use(compression());
 app.use(bodyParser.json());
-app.use(webmakerAuth.cookieParser());
-app.use(webmakerAuth.cookieSession());
+app.use(cookieSession({
+  name: "Firehose:Login",
+  secret: env.get("SECRET_KEY"),
+  expires: false,
+  secure: env.get("FORCE_SSL"),
+  secureProxy: env.get("FORCE_SSL"),
+  domain: env.get("DOMAIN")
+}));
 app.use(csrf());
 
 // make bower components universally findable by

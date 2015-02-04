@@ -4,7 +4,7 @@ module.exports = {
       return next();
     }
 
-    return res.send(403);
+    return res.sendStatus(403);
   },
 
   isAdmin: function(req, res, next) {
@@ -12,6 +12,6 @@ module.exports = {
       return next();
     }
 
-    return res.send(403);
+    return res.sendStatus(403);
   }
 };
