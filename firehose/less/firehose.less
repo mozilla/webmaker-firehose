@@ -1,3 +1,152 @@
-.component {
+@firehose-dark-blue: #0A2E38;
+@firehose-light-blue: #2E95C0;
+@firehose-gray: #DDEDF2;
+@firehose-white: #F9FAFA;
+@firehose-featured: #FFF500;
+
+@navbarMarginTop: -6px;
+
+* {
+  box-sizing: border-box;
+}
+
+.firehose-body {
+  margin: 0;
+  padding-top: 70px;
   background: white;
+}
+
+.navbar {
+  color: @firehose-white;
+  background: @firehose-light-blue;
+}
+
+.firehose-slider {
+  background-color: @firehose-white;
+}
+
+.navbar-brand {
+  background: @firehose-light-blue;
+  color: @firehose-white;
+  &:hover {
+    background: @firehose-light-blue !important;
+    color: @firehose-white !important;
+  }
+}
+
+.nav {
+  li {
+    span {
+      display: block;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.container {
+  .webmaker-login-ux {
+    float: right;
+    margin-top: @navbarMarginTop;
+  }
+}
+
+.firehose-toggle {
+  cursor: pointer;
+  &.left {
+    .firehose-slider {
+      right: 72px;
+    }
+  }
+  &.right {
+    .firehose-slider {
+      right: 27px;
+    }
+  }
+  .firehose-toggle-icon {
+    padding: 10 5px;
+    font-weight: bold;
+  }
+  .firehose-toggle-icon,
+  .firehose-slider-container {
+    float: left;
+    margin-top: @navbarMarginTop;
+  }
+  .firehose-slider-container {
+    background-color: inherit;
+    width: 75px;
+    height: 30px;
+    border: 3px solid;
+    border-radius: 35px;
+  }
+  .firehose-slider {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    margin-top: 2px;
+    border-radius: 15px;
+    transition: right .25s ease-out;
+  }
+}
+
+.loading-makes,
+.no-makes {
+  font-size: 2em;
+}
+
+.firehose-make-details {
+  width: 100%;
+  height: 70px;
+
+  .firehose-make-avatar {
+    float: left;
+    height: 70px;
+    width: 70px;
+    border-radius: 70px;
+    overflow: hidden;
+    display: inline;
+  }
+
+  .firehose-make-info {
+    font-weight: bold;
+    font-size: 1.1em;
+    display: inline-block;
+    height: 100%;
+    padding-top: 15px;
+    margin-left: 15px;
+  }
+
+  .details-controls {
+    float: rightl
+  }
+
+  .trash-make,
+  .feature-toggle,
+  .make-nav {
+    font-weight: bold;
+  }
+
+  .firehose-one-up-controls {
+    float: right;
+
+    .firehose-trash-make,
+    .fa-arrow-right,
+    .fa-arrow-left,
+    .feature-toggle {
+      color: @firehose-light-blue;
+      font-size: 3em;
+      margin: 15px 70px 0 0;
+      cursor: pointer;
+    }
+
+    .feature-toggle.fa-star {
+      color: @firehose-featured;
+    }
+  }
+}
+
+.make-preview {
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }

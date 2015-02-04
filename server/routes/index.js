@@ -1,18 +1,30 @@
-var API = require("../lib/API");
 var middleware = require("../lib/middleware");
 var version = "1.0";
 var apiroute = "/api/" + version + "/";
 
 module.exports = {
-  setup: function (app, webmakerAuth) {
-    // make id parameters
-    app.param("makeid", API.makeid);
+  setup: function (app, env, webmakerAuth) {
+    var API = require("../lib/API")(env);
 
     app.post(
       apiroute + "feature",
       middleware.isLoggedIn,
       middleware.isAdmin,
       API.feature
+    );
+
+    app.post(
+      apiroute + "trash",
+      middleware.isLoggedIn,
+      middleware.isAdmin,
+      API.trash
+    );
+
+    app.get(
+      apiroute + "find",
+      middleware.isLoggedIn,
+      middleware.isAdmin,
+      API.find
     );
 
     app.get("/", function(req, res) {

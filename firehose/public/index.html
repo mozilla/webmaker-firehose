@@ -5,18 +5,18 @@
     <title>Webmaker Firehose</title>
     <meta name="csrf-token" content="{{ csrf }}">
   </head>
-  <body>
+  <body class="firehose-body">
 
-    <div id="firehose-app">
-      Scripts must be enabled for Webmaker-firehose to function.
+    <div id="firehose-app" class="firehose-app">
     </div>
 
     <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
     <link rel="stylesheet" href="/cdn/makerstrap/dist/makerstrap.complete.min.css">
     <link rel="stylesheet" href="/cdn/webmaker-login-ux/dist/css/webmakerLogin.css">
+    <link rel="stylesheet" href="/stylesheets/firehose.css">
+
     <script src="/cdn/webmaker-login-ux/dist/min/webmakerLogin.min.js"></script>
     <script src="/cdn/react/dist/react.js"></script>
-
     <script src="javascript/firehose-app.js"></script>
 
   </body>

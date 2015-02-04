@@ -1,5 +1,4 @@
 var WebmakerUxMixin = {
-
   componentDidMount: function() {
     var WebmakerLoginUx = require("webmaker-login-ux");
 
@@ -29,7 +28,10 @@ var WebmakerUxMixin = {
   },
   login: function(evt) {
     this.auth.login();
+  },
+  logout: function(evt) {
+    this.auth.logout();
   }
-}
+};
 
 module.exports = WebmakerUxMixin;
