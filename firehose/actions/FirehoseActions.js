@@ -2,7 +2,11 @@ var FirehoseDispatcher = require("../dispatcher/FirehoseDispatcher");
 var FirehoseConstants = require("./FirehoseConstants");
 var EventEmitter = require("events").EventEmitter;
 
-var FirehoseActions = Object.assign({}, EventEmitter.prototype, {
+// extra ES6 shims
+var objectAssign = require("object-assign");
+require('array.prototype.find');
+
+var FirehoseActions = objectAssign({}, EventEmitter.prototype, {
   toggleFeature: function() {
     FirehoseDispatcher.dispatch({
       actionType: FirehoseConstants.TOGGLE_FEATURE
