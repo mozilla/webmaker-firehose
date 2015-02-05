@@ -80,7 +80,13 @@ var Firehose = React.createClass({
       return (
         <div>
           {header}
-          <h1>You do not have permission to use the Firehose!</h1>
+          <div className="container">
+            <h2>
+              You do not have permission to use the Firehose.
+              <br /><br />
+              Contact <a href='mailto:cade@mozillafoundation.org'>@cade</a> or <a href='mailto:jbuck@mozillafoundation.org'>@jbuck</a> for assistance.
+            </h2>
+          </div>
         </div>
       );
     }
@@ -88,6 +94,9 @@ var Firehose = React.createClass({
     return (
       <div>
         {header}
+        <div className="container">
+          <h2>Please sign in</h2>
+        </div>
       </div>
     );
   }
