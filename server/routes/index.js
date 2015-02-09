@@ -20,6 +20,13 @@ module.exports = {
       API.trash
     );
 
+    app.post(
+      apiroute + "restore",
+      middleware.isLoggedIn,
+      middleware.isAdmin,
+      API.restore
+    );
+
     app.get(
       apiroute + "find",
       middleware.isLoggedIn,
