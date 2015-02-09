@@ -35,7 +35,7 @@ let MakeModerationActions = {
   onTrashClicked: function() {
     let makes = this.state.makes;
     let make = makes[this.state.index];
-    let makeIndex = makes.indexOf[make];
+    let makeIndex = makes.indexOf(make);
     toastr.options.onclick = () => {
       this.restore(make, makeIndex);
       return true;
