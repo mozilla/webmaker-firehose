@@ -49,6 +49,16 @@ module.exports = function(env) {
         }
         res.json({status: "deleted"});
       });
+    },
+
+    restore: function(req, res) {
+      var id = req.body.id;
+      client.restore(id, function(err, data) {
+        if ( err ) {
+          return res.status(500).send(err);
+        }
+        res.json(data);
+      });
     }
   };
 };
