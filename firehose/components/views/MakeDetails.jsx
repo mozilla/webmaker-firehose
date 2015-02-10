@@ -33,7 +33,7 @@ var MakeDetails = React.createClass({
             src={avatarUrl}
             alt="https://stuff.webmaker.org/avatars/webmaker-avatar-200x200.png">
           </img>
-          <div className="firehose-make-info">
+          <div className="firehose-make-info col-md-6 col-xs-6">
             <div className="firehose-make-title">{this.props.make.title}</div>
             <div >
               <a className="firehose-make-username" href={userLink} >
@@ -41,7 +41,7 @@ var MakeDetails = React.createClass({
               </a>
             </div>
           </div>
-          <div className="firehose-one-up-controls">
+          <div className="firehose-one-up-controls col-md-5 col-xs-5">
             <Trash onTrashClicked={this.props.onTrashClicked} />
             <Feature onFeaturedClicked={this.onFeaturedClicked} featured={featured} />
             <Navigation onNavigate={this.onNavigate} delta={-1}/>
