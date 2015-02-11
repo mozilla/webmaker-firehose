@@ -53,7 +53,7 @@ let MakeModerationActions = {
         if ( index !== 0 && index > makes.length - 1 ) {
           index--;
         }
-        toastr.error(`${make.title} was deleted. Click this message to restore it.`);
+        toastr.error("<strong>Click To Undo</strong>", "<strong>Make Deleted</strong>");
         this.setState({
           makes: makes,
           index: index
