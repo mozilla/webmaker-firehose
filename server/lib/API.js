@@ -66,6 +66,7 @@ module.exports = function(env) {
       var url = req.query.url;
 
       res.header("x-frame-options", "allow");
+      res.header("Content-Type", "text/html");
 
       var hReq = hyperquest.get({
         uri: url
