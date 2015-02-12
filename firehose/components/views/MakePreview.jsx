@@ -2,11 +2,10 @@ var React = require("react");
 
 var MakePreview = React.createClass({
   render: function() {
-    var url = this.props.url,
-        https = /^https/;
+    var url = this.props.url;
 
-      // proxy http urls
-      if ( !https.test(url) ) {
+      // proxy goggles urls (mixed content workaround)
+      if ( this.props.contentType === "application/x-x-ray-goggles" ) {
         url = `/api/1.0/proxy-make/?url=${url}`;
       }
 
