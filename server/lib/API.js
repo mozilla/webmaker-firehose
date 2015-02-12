@@ -65,7 +65,7 @@ module.exports = function(env) {
     proxyMake: function(req, res) {
       var url = req.query.url;
 
-      res.header("x-frame-options", "allow");
+      res.header("x-frame-options", "SAMEORIGIN");
       res.header("Content-Type", "text/html");
 
       var hReq = hyperquest.get({
