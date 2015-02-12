@@ -34,6 +34,13 @@ module.exports = {
       API.find
     );
 
+    app.get(
+      apiroute + "proxy-make",
+      middleware.isLoggedIn,
+      middleware.isAdmin,
+      API.proxyMake
+    );
+
     app.get("/", function(req, res) {
       res.render("index.html", {
         csrf: req.csrfToken()

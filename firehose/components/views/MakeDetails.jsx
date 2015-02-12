@@ -48,7 +48,9 @@ var MakeDetails = React.createClass({
             <Navigation onNavigate={this.onNavigate} delta={1} />
           </div>
         </div>
-        <MakePreview url={this.props.make.url} />
+        <MakePreview
+          url={this.props.make.url}
+          contentType={this.props.make.contentType} />
       </div>
     );
   }

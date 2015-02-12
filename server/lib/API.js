@@ -1,4 +1,5 @@
 var makeAPIClient = require("makeapi-client");
+var hyperquest = require("hyperquest");
 var featuredTag = "webmaker:featured";
 
 module.exports = function(env) {
@@ -59,6 +60,20 @@ module.exports = function(env) {
         }
         res.json(data);
       });
+    },
+
+    proxyMake: function(req, res) {
+      var url = req.query.url;
+
+      res.header("x-frame-options", "allow");
+
+      var hReq = hyperquest.get({
+        uri: url
+      });
+      hReq.on("error", function(err) {
+        res.status(500).send(err);
+      });
+      hReq.pipe(res);
     }
   };
 };
