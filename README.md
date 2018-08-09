@@ -1,5 +1,7 @@
 # Webmaker-Firehose
 
+## This project is inactive (https://learning.mozilla.org/blog/product-update-for-appmaker-and-popcorn-maker)
+
 Webmaker Firehose is a simple app server and React app that displays the latest
 makes created on Webmaker.org, and enables them to be featured on Webmaker.org by
 admins.
